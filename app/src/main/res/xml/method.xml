@@ -4,13 +4,11 @@
     android:supportsSwitchingToNextInputMethod="true">
 
     <subtype
-        android:icon="@mipmap/ic_launcher"
         android:imeSubtypeLocale="id_ID"
         android:imeSubtypeMode="keyboard"
         android:label="@string/subtype_id" />
 
     <subtype
-        android:icon="@mipmap/ic_launcher"
         android:imeSubtypeLocale="en_US"
         android:imeSubtypeMode="keyboard"
         android:label="@string/subtype_en" />
