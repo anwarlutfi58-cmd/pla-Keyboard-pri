@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pla Keyboard Pro</string>
+    <string name="ime_name">Pla Keyboard Pro (Responsif &amp; Ergonomis)</string>
+    <string name="subtype_id">Bahasa Indonesia (QWERTY)</string>
+    <string name="subtype_en">English (QWERTY)</string>
+    <string name="desc_btn_back">Tombol kembali ke menu utama pengaturan di pojok kanan bawah</string>
+</resources>
