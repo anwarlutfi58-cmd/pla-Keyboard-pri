@@ -127,12 +127,17 @@
     </LinearLayout>
 
     <!-- Kanvas Keyboard Utama -->
-    <!-- PERBAIKAN: Tinggi dipaksa 250dp, dan HAPUS focusable agar catatan bisa disentuh -->
     <com.pla.keyboard.ZeroLatencyKeyboardView
         android:id="@+id/zeroLatencyKeyboard"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:contentDescription="Keyboard Utama"
         android:clickable="true" />
+
+    <!-- Penyangga Posisi Bawah (INI YANG TADI HILANG) -->
+    <View
+        android:id="@+id/viewBottomOffset"
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
 
 </LinearLayout>
