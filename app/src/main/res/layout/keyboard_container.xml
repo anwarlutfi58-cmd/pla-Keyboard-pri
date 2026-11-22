@@ -24,7 +24,7 @@
             android:padding="0dp"
             android:text="📋"
             android:textSize="15sp"
-            android:contentDescription="Papan Klip Clipboard" />
+            android:contentDescription="Papan Klip" />
 
         <TextView
             android:id="@+id/tvSugg1"
@@ -78,7 +78,7 @@
             android:padding="0dp"
             android:text="⚙️"
             android:textSize="15sp"
-            android:contentDescription="Pengaturan Pla Keyboard Pro" />
+            android:contentDescription="Pengaturan" />
     </LinearLayout>
 
     <!-- Panel Papan Klip -->
@@ -126,21 +126,13 @@
         </ScrollView>
     </LinearLayout>
 
-    <!-- Kanvas Keyboard Utama Zero-Latency -->
-    <!-- PERBAIKAN UTAMA: 
-         1. focusable dihapus agar tidak mencuri fokus layar catatan.
-         2. layout_height diganti jadi 250dp (angka fix). 
-            Kalau pakai wrap_content, custom view-mu bakal tinggi 0dp dan tombol hilang. -->
+    <!-- Kanvas Keyboard Utama -->
+    <!-- PERBAIKAN: Tinggi dipaksa 250dp, dan HAPUS focusable agar catatan bisa disentuh -->
     <com.pla.keyboard.ZeroLatencyKeyboardView
         android:id="@+id/zeroLatencyKeyboard"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:contentDescription="Keyboard Utama"
         android:clickable="true" />
-
-    <!-- Penyangga Posisi Bawah -->
-    <View
-        android:id="@+id/viewBottomOffset"
-        android:layout_width="match_parent"
-        android:layout_height="12dp" />
 
 </LinearLayout>
