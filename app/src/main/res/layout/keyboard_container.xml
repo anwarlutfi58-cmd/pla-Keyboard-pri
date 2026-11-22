@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keyboardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/kb_dark_bg">
+
+    <!-- Bilah Atas: Saran Kata Instan (Gboard Style), Clipboard & Pengaturan -->
+    <LinearLayout
+        android:id="@+id/stripSuggestions"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="6dp">
+
+        <Button
+            android:id="@+id/btnKbClipboard"
+            android:layout_width="42dp"
+            android:layout_height="38dp"
+            android:backgroundTint="@color/kb_dark_key_func"
+            android:padding="0dp"
+            android:text="📋"
+            android:textSize="15sp"
+            android:contentDescription="Papan Klip Clipboard" />
+
+        <TextView
+            android:id="@+id/tvSugg1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="saya"
+            android:textColor="@color/kb_dark_text"
+            android:textSize="15sp"
+            android:maxLines="1" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="#334155" />
+
+        <TextView
+            android:id="@+id/tvSugg2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="yang"
+            android:textColor="@color/accent_cyan"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:maxLines="1" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="#334155" />
+
+        <TextView
+            android:id="@+id/tvSugg3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="dan"
+            android:textColor="@color/kb_dark_text"
+            android:textSize="15sp"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/btnKbSettings"
+            android:layout_width="42dp"
+            android:layout_height="38dp"
+            android:backgroundTint="@color/kb_dark_key_func"
+            android:padding="0dp"
+            android:text="⚙️"
+            android:textSize="15sp"
+            android:contentDescription="Pengaturan Pla Keyboard Pro" />
+    </LinearLayout>
+
+    <!-- Panel Papan Klip (Clipboard) Cepat (Tersembunyi secara default) -->
+    <LinearLayout
+        android:id="@+id/panelClipboard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:background="@color/kb_dark_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Papan Klip Cepat (Ketuk untuk Tempel)"
+                android:textColor="@color/text_gold"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnCloseClipboard"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Tutup"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp">
+            <LinearLayout
+                android:id="@+id/containerClipItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Kanvas Keyboard Utama Zero-Latency (Tinggi Dinamis untuk Jari Panjang) -->
+    <com.pla.keyboard.ZeroLatencyKeyboardView
+        android:id="@+id/zeroLatencyKeyboard"
+        android:layout_width="match_parent"
+        android:layout_height="260dp" />
+
+    <!-- Penyangga Posisi Bawah (Bottom Offset Ergonomis) -->
+    <View
+        android:id="@+id/viewBottomOffset"
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+
+</LinearLayout>
