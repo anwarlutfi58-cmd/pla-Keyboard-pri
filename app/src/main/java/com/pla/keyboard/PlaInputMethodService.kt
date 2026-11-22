@@ -26,28 +26,47 @@ class PlaInputMethodService : InputMethodService(), ZeroLatencyKeyboardView.Keyb
 
     override fun onCreateInputView(): View {
         binding = KeyboardContainerBinding.inflate(layoutInflater)
+        
+        // Inisialisasi keyboard view
         binding.zeroLatencyKeyboard.initEngines(prefs, feedbackEngine)
         binding.zeroLatencyKeyboard.actionListener = this
+        
+        // PERBAIKAN: Pastikan view bisa menerima fokus dan sentuhan
+        binding.zeroLatencyKeyboard.apply {
+            isClickable = true
+            isFocusable = true
+            isFocusableInTouchMode = true
+            requestFocus()
+        }
 
         applyErgonomicDimensions()
         setupTopBarControls()
         updateSuggestionBar()
+        
         return binding.root
     }
 
     override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
         super.onStartInputView(info, restarting)
         if (::binding.isInitialized) {
+            // Refresh dimensi setiap kali keyboard muncul untuk memastikan sinkronisasi
             applyErgonomicDimensions()
             binding.zeroLatencyKeyboard.refreshLayout()
+            binding.zeroLatencyKeyboard.requestFocus()
         }
     }
 
     private fun applyErgonomicDimensions() {
         val density = resources.displayMetrics.density
-        val kbParams = binding.zeroLatencyKeyboard.layoutParams
-        kbParams.height = (prefs.keyboardHeightDp * density).toInt()
-        binding.zeroLatencyKeyboard.layoutParams = kbParams
+        
+        // PERBAIKAN: Gunakan minHeight dari XML sebagai baseline, 
+        // lalu sesuaikan hanya jika preferensi memiliki nilai valid
+        val targetHeightDp = prefs.keyboardHeightDp
+        if (targetHeightDp > 0) {
+            val kbParams = binding.zeroLatencyKeyboard.layoutParams
+            kbParams.height = (targetHeightDp * density).toInt()
+            binding.zeroLatencyKeyboard.layoutParams = kbParams
+        }
 
         val offsetParams = binding.viewBottomOffset.layoutParams
         offsetParams.height = (prefs.bottomOffsetDp * density).toInt()
@@ -123,7 +142,6 @@ class PlaInputMethodService : InputMethodService(), ZeroLatencyKeyboardView.Keyb
         val ic = currentInputConnection ?: return
 
         if (isDoubleTapCaps && currentWordBuffer.isNotEmpty()) {
-            // Hapus huruf kecil pertama pada ketukan pertama lalu ganti huruf kapital
             ic.deleteSurroundingText(1, 0)
             currentWordBuffer.deleteCharAt(currentWordBuffer.length - 1)
         }
@@ -143,7 +161,6 @@ class PlaInputMethodService : InputMethodService(), ZeroLatencyKeyboardView.Keyb
 
     override fun onDoubleTapSpacePeriod() {
         val ic = currentInputConnection ?: return
-        // Ubah spasi sebelumnya menjadi ". " (khas Samsung Keyboard & Gboard)
         ic.deleteSurroundingText(1, 0)
         ic.commitText(". ", 1)
         currentWordBuffer.clear()
