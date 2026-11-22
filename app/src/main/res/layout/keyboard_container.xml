@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/kb_dark_bg">
 
-    <!-- Bilah Atas: Saran Kata Instan (Gboard Style), Clipboard & Pengaturan -->
+    <!-- Bilah Atas: Saran Kata Instan -->
     <LinearLayout
         android:id="@+id/stripSuggestions"
         android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             android:contentDescription="Pengaturan Pla Keyboard Pro" />
     </LinearLayout>
 
-    <!-- Panel Papan Klip (Clipboard) Cepat (Tersembunyi secara default) -->
+    <!-- Panel Papan Klip -->
     <LinearLayout
         android:id="@+id/panelClipboard"
         android:layout_width="match_parent"
@@ -126,13 +126,18 @@
         </ScrollView>
     </LinearLayout>
 
-    <!-- Kanvas Keyboard Utama Zero-Latency (Tinggi Dinamis untuk Jari Panjang) -->
+    <!-- Kanvas Keyboard Utama Zero-Latency -->
+    <!-- PERBAIKAN: Hapus tinggi fix, tambahkan clickable & focusable -->
     <com.pla.keyboard.ZeroLatencyKeyboardView
         android:id="@+id/zeroLatencyKeyboard"
         android:layout_width="match_parent"
-        android:layout_height="260dp" />
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
-    <!-- Penyangga Posisi Bawah (Bottom Offset Ergonomis) -->
+    <!-- Penyangga Posisi Bawah -->
     <View
         android:id="@+id/viewBottomOffset"
         android:layout_width="match_parent"
