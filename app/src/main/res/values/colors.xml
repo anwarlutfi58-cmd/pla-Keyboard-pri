@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Palet Pengaturan & Tema Gelap Anti-Silau -->
+    <color name="bg_primary">#13171D</color>
+    <color name="bg_surface">#1E242E</color>
+    <color name="bg_surface_elevated">#293240</color>
+
+    <!-- Palet Keyboard: Gelap Lembut, Terang Teduh, & Kontras Tinggi -->
+    <color name="kb_dark_bg">#161A20</color>
+    <color name="kb_dark_key">#252B35</color>
+    <color name="kb_dark_key_func">#1D222B</color>
+    <color name="kb_dark_text">#F4F2EC</color>
+
+    <color name="kb_light_bg">#DCE1E7</color>
+    <color name="kb_light_key">#F6F8FA</color>
+    <color name="kb_light_key_func">#C7CFD9</color>
+    <color name="kb_light_text">#171C24</color>
+
+    <color name="kb_hc_bg">#0A0C0F</color>
+    <color name="kb_hc_key">#1A2029</color>
+    <color name="kb_hc_text">#FFE66D</color>
+
+    <!-- Aksen -->
+    <color name="text_primary">#F5F2EB</color>
+    <color name="text_secondary">#B2BCCB</color>
+    <color name="text_gold">#F6C453</color>
+    <color name="accent_cyan">#38BDF8</color>
+    <color name="accent_emerald">#34D399</color>
+</resources>
