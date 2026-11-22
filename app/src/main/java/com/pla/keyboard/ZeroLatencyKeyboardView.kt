@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.abs
@@ -84,12 +85,16 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
+        Log.d("KEYBOARD_DEBUG", "Size changed: ${w}x${h}")
         rebuildKeyGeometry(w, h)
     }
 
     private fun rebuildKeyGeometry(viewW: Int, viewH: Int) {
         renderedKeys.clear()
-        if (viewW <= 0 || viewH <= 0) return
+        if (viewW <= 0 || viewH <= 0) {
+            Log.w("KEYBOARD_DEBUG", "Invalid size for key geometry: ${viewW}x${viewH}")
+            return
+        }
 
         val density = resources.displayMetrics.density
         val gapPx = (if (::prefs.isInitialized) prefs.keyGapDp else 5) * density
@@ -165,6 +170,8 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
                 currentX += keyW + gapPx
             }
         }
+        
+        Log.d("KEYBOARD_DEBUG", "Rebuilt ${renderedKeys.size} keys for size ${viewW}x${viewH}")
     }
 
     private fun formatDisplayLabel(code: String): String {
@@ -247,6 +254,9 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val x = event.x
         val y = event.y
+        
+        // DEBUG: Log koordinat sentuhan
+        Log.d("KEYBOARD_TOUCH", "Touch at: x=$x, y=$y, action=${event.actionMasked}, keysCount=${renderedKeys.size}")
 
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
@@ -258,6 +268,8 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
                 glideLetterTrail.clear()
 
                 val hit = findKeyAt(x, y)
+                Log.d("KEYBOARD_TOUCH", "Key hit: ${hit?.code ?: "NONE"}")
+                
                 pressedKey = hit
                 if (hit != null) {
                     if (hit.code.length == 1 && hit.code[0].isLetter()) {
