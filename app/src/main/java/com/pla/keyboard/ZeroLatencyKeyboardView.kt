@@ -34,7 +34,6 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
 
     var actionListener: KeyboardActionListener? = null
     
-    // PERBAIKAN: Inisialisasi langsung agar tidak crash jika prefs terlambat
     private var prefs: PrefsManager? = null
     private var feedbackEngine: InstantSoundHapticEngine? = null
 
@@ -65,7 +64,6 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
         strokeJoin = Paint.Join.ROUND
     }
 
-    // PERBAIKAN: Fungsi init sekarang menangani null safety
     fun initEngines(prefsManager: PrefsManager, engine: InstantSoundHapticEngine) {
         this.prefs = prefsManager
         this.feedbackEngine = engine
@@ -78,6 +76,18 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
         invalidate()
     }
 
+    // PERBAIKAN: Menjamin custom view punya ukuran minimal 250dp jika menggunakan wrap_content
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val defaultHeight = (250 * resources.displayMetrics.density).toInt()
+        val height = if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.UNSPECIFIED) {
+            defaultHeight
+        } else {
+            MeasureSpec.getSize(heightMeasureSpec)
+        }
+        setMeasuredDimension(width, height)
+    }
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         rebuildKeyGeometry(w, h)
@@ -85,8 +95,6 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
 
     private fun rebuildKeyGeometry(viewW: Int, viewH: Int) {
         renderedKeys.clear()
-        
-        // PERBAIKAN: Gunakan nilai default jika prefs belum siap
         if (viewW <= 0 || viewH <= 0) return
 
         val density = resources.displayMetrics.density
@@ -108,13 +116,7 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
                     listOf("DEL" to 1.45f)
             )
             rows.add(
-                listOf(
-                    "?123" to 1.4f,
-                    "," to 1.0f,
-                    " " to 4.2f,
-                    "." to 1.0f,
-                    "ENTER" to 1.6f
-                )
+                listOf("?123" to 1.4f, "," to 1.0f, " " to 4.2f, "." to 1.0f, "ENTER" to 1.6f)
             )
         } else {
             rows.add(listOf("@", "#", "Rp", "_", "&", "-", "+", "(", ")", "/").map { it to 1f })
@@ -125,18 +127,11 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
                     listOf("DEL" to 1.45f)
             )
             rows.add(
-                listOf(
-                    "ABC" to 1.4f,
-                    "," to 1.0f,
-                    " " to 4.2f,
-                    "." to 1.0f,
-                    "ENTER" to 1.6f
-                )
+                listOf("ABC" to 1.4f, "," to 1.0f, " " to 4.2f, "." to 1.0f, "ENTER" to 1.6f)
             )
         }
 
         val rowCount = rows.size
-        // PERBAIKAN: Pastikan rowHeight tidak negatif
         val totalGapHeight = gapPx * (rowCount + 1)
         val rowHeight = if (viewH > totalGapHeight) (viewH - totalGapHeight) / rowCount else 50f
 
@@ -153,8 +148,6 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
                 val keyW = (usableWidth * (weight / totalWeight))
                 val isFunc = code in setOf("SHIFT", "DEL", "?123", "ABC", "ENTER")
                 val label = formatDisplayLabel(code)
-                
-                // PERBAIKAN: Pastikan lebar tombol minimal 10dp agar bisa disentuh
                 val safeKeyW = keyW.coerceAtLeast(10f * density)
                 
                 renderedKeys.add(
@@ -183,7 +176,6 @@ class ZeroLatencyKeyboardView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         
-        // PERBAIKAN: Null safety untuk tema dan font
         val theme = prefs?.antiGlareTheme ?: 0
         val fontSizeSp = prefs?.keyFontSizeSp?.toFloat() ?: 22f
         val density = resources.displayMetrics.density
