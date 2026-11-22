@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settingsRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary">
+
+    <!-- =================================================================== -->
+    <!-- 0. BERANDA PENGATURAN & UJI KETIK LANGSUNG                          -->
+    <!-- =================================================================== -->
+    <ScrollView
+        android:id="@+id/pageHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edisi Responsif (Zero-Latency) &amp; Ergonomis Jari Panjang"
+                android:textColor="@color/accent_cyan"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Kartu Langkah Aktivasi Keyboard di Sistem Android -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_soft"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Langkah Aktivasi Cepat"
+                    android:textColor="@color/text_gold"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnEnableIme"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/accent_cyan"
+                    android:text="1. Aktifkan Pla Keyboard Pro di Sistem"
+                    android:textColor="#0B131A"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnSelectIme"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/accent_emerald"
+                    android:text="2. Pilih Pla Keyboard Pro Sebagai Default"
+                    android:textColor="#0B1613"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etTestTyping"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/bg_primary"
+                    android:padding="12dp"
+                    android:hint="Ketuk di sini untuk menguji respons ketik &amp; tinggi keyboard..."
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- 4 Kategori Menu Single Page -->
+            <Button
+                android:id="@+id/btnMenuHeightLayout"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/bg_surface_elevated"
+                android:text="1. Tinggi &amp; Tata Letak Keyboard (Jari Panjang)"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnMenuDoubleTap"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/bg_surface_elevated"
+                android:text="2. Ketukan Dua Kali (Double-Tap) &amp; Gestur"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnMenuSoundHaptic"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/bg_surface_elevated"
+                android:text="3. Kecepatan, Suara &amp; Getaran Haptic"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnMenuAccessibility"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:backgroundTint="@color/bg_surface_elevated"
+                android:text="4. Aksesibilitas &amp; Tampilan Anti-Silau"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- =================================================================== -->
+    <!-- 1. HALAMAN: TINGGI & TATA LETAK KEYBOARD (KHUSUS JARI PANJANG)      -->
+    <!-- =================================================================== -->
+    <ScrollView
+        android:id="@+id/pageHeightLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:paddingBottom="84dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tinggi &amp; Tata Letak Ergonomis"
+                android:textColor="@color/text_primary"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_soft"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preset Tinggi Keyboard (Ergonomi Jari Panjang)"
+                    android:textColor="@color/accent_cyan"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgHeightPreset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+                    <RadioButton android:id="@+id/rbHeightShort" android:layout_width="match_parent" android:layout_height="46dp" android:text="Pendek (215 dp)" android:textColor="@color/text_primary" />
+                    <RadioButton android:id="@+id/rbHeightStandard" android:layout_width="match_parent" android:layout_height="46dp" android:text="Standar (255 dp)" android:textColor="@color/text_primary" />
+                    <RadioButton android:id="@+id/rbHeightTall" android:layout_width="match_parent" android:layout_height="46dp" android:text="Tinggi - Nyaman Jari Panjang (295 dp)" android:textColor="@color/text_primary" />
+                    <RadioButton android:id="@+id/rbHeightExtraTall" android:layout_width="match_parent" android:layout_height="46dp" android:text="Ekstra Tinggi - Anti Pegal (335 dp)" android:textColor="@color/text_primary" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tvPreciseHeightLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Penggeser Presisi Tinggi: 295 dp"
+                    android:textColor="@color/text_gold"
+                    android:textStyle="bold" />
+                <SeekBar
+                    android:id="@+id/seekPreciseHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:max="180"
+                    android:progress="95" />
+
+                <TextView
+                    android:id="@+id/tvBottomOffsetLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posisi Tinggi-Rendah Layar (Bottom Offset): 14 dp"
+                    android:textColor="@color/text_primary" />
+                <SeekBar
+                    android:id="@+id/seekBottomOffset"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:max="64"
+                    android:progress="14" />
+
+                <TextView
+                    android:id="@+id/tvKeyGapLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jarak Antar Tombol: 5 dp"
+                    android:textColor="@color/text_primary" />
+                <SeekBar
+                    android:id="@+id/seekKeyGap"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:max="12"
+                    android:progress="5" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchNumberRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Tampilkan Baris Angka Permanen di Atas"
+                    android:textColor="@color/text_primary" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- =================================================================== -->
+    <!-- 2. HALAMAN: KETUKAN DUA KALI (DOUBLE-TAP) & GESTUR                  -->
+    <!-- =================================================================== -->
+    <ScrollView
+        android:id="@+id/pageDoubleTap"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:paddingBottom="84dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ketukan Dua Kali &amp; Gestur Geser"
+                android:textColor="@color/text_primary"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_soft"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchDoubleSpacePeriod"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="Ketuk 2x Spasi: Tambah Titik &amp; Spasi Otomatis"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchDoubleLetterCaps"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="Ketuk 2x Huruf Cepat: Kapitalisasi Huruf Tersebut"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchDoubleShiftLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="Ketuk 2x Shift: Kunci Huruf Besar (Caps Lock)"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchGlideTyping"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="Usapan Geser Kata (Glide / Swipe Typing ala Gboard)"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvDoubleTapWindowLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Kecepatan Jendela Ketuk 2x: 280 ms"
+                    android:textColor="@color/accent_cyan" />
+                <SeekBar
+                    android:id="@+id/seekDoubleTapWindow"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:max="400"
+                    android:progress="180" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- =================================================================== -->
+    <!-- 3. HALAMAN: KECEPATAN, SUARA & GETARAN HAPTIC                      -->
+    <!-- =================================================================== -->
+    <ScrollView
+        android:id="@+id/pageSoundHaptic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:paddingBottom="84dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kecepatan, Suara &amp; Getaran Haptic"
+                android:textColor="@color/text_primary"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_soft"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchKeySound"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Suara Ketukan Zero-Latency"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvSoundVolLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volume Suara Ketukan: 80%"
+                    android:textColor="@color/text_primary" />
+                <SeekBar
+                    android:id="@+id/seekSoundVolume"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:max="100"
+                    android:progress="80" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Profil Karakter Suara Ketukan:"
+                    android:textColor="@color/accent_cyan"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgSoundProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton android:id="@+id/rbSoundCrisp" android:layout_width="match_parent" android:layout_height="46dp" android:text="Tegas &amp; Jernih (Gboard Crisp)" android:textColor="@color/text_primary" />
+                    <RadioButton android:id="@+id/rbSoundSoft" android:layout_width="match_parent" android:layout_height="46dp" android:text="Lembut Ergonomis (Soft Tap)" android:textColor="@color/text_primary" />
+                    <RadioButton android:id="@+id/rbSoundMech" android:layout_width="match_parent" android:layout_height="46dp" android:text="Mekanikal Taktil" android:textColor="@color/text_primary" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tvHapticLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Intensitas Getaran Mikro (Haptic): 70%"
+                    android:textColor="@color/text_primary" />
+                <SeekBar
+                    android:id="@+id/seekHapticStrength"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:max="100"
+                    android:progress="70" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- =================================================================== -->
+    <!-- 4. HALAMAN: AKSESIBILITAS & TAMPILAN ANTI-SILAU                     -->
+    <!-- =================================================================== -->
+    <ScrollView
+        android:id="@+id/pageAccessibility"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:paddingBottom="84dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aksesibilitas &amp; Visual Anti-Silau"
+                android:textColor="@color/text_primary"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_soft"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchScreenReaderSpeak"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Pembaca Huruf Saat Disentuh (Screen Reader)"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchTwoTouchConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="Mode Dua Sentuhan (Sentuh 1: Sebut Huruf, Sentuh 2: Ketik)"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchSpatialAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Audio Spasial Kiri-Kanan Sesuai Posisi Tombol"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Tema Warna Anti-Silau (Mata Minus):"
+                    android:textColor="@color/accent_cyan"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgThemeAntiGlare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton android:id="@+id/rbThemeDark" android:layout_width="match_parent" android:layout_height="46dp" android:text="Gelap Anti-Silau (Charcoal Soft)" android:textColor="@color/text_primary" />
+                    <RadioButton android:id="@+id/rbThemeLight" android:layout_width="match_parent" android:layout_height="46dp" android:text="Terang Teduh (Matte Slate)" android:textColor="@color/text_primary" />
+                    <RadioButton android:id="@+id/rbThemeHighContrast" android:layout_width="match_parent" android:layout_height="46dp" android:text="Kontras Tinggi (Hitam &amp; Kuning Emas)" android:textColor="@color/text_primary" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tvKeyFontSizeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Ukuran Huruf pada Tombol: 22 sp"
+                    android:textColor="@color/text_primary" />
+                <SeekBar
+                    android:id="@+id/seekKeyFontSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:max="14"
+                    android:progress="6" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- =================================================================== -->
+    <!-- TOMBOL KEMBALI KHUSUS DI POJOK KANAN BAWAH                          -->
+    <!-- =================================================================== -->
+    <Button
+        android:id="@+id/btnBackBottomRight"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:paddingHorizontal="24dp"
+        android:backgroundTint="@color/text_gold"
+        android:text="← KEMBALI"
+        android:textColor="#13171D"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:contentDescription="@string/desc_btn_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
