@@ -127,15 +127,15 @@
     </LinearLayout>
 
     <!-- Kanvas Keyboard Utama Zero-Latency -->
-    <!-- PERBAIKAN: Hapus tinggi fix, tambahkan clickable & focusable -->
+    <!-- PERBAIKAN UTAMA: 
+         1. focusable dihapus agar tidak mencuri fokus layar catatan.
+         2. layout_height diganti jadi 250dp (angka fix). 
+            Kalau pakai wrap_content, custom view-mu bakal tinggi 0dp dan tombol hilang. -->
     <com.pla.keyboard.ZeroLatencyKeyboardView
         android:id="@+id/zeroLatencyKeyboard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="200dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
+        android:layout_height="250dp"
+        android:clickable="true" />
 
     <!-- Penyangga Posisi Bawah -->
     <View
