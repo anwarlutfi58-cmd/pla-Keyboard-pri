@@ -31,13 +31,9 @@ class PlaInputMethodService : InputMethodService(), ZeroLatencyKeyboardView.Keyb
         binding.zeroLatencyKeyboard.initEngines(prefs, feedbackEngine)
         binding.zeroLatencyKeyboard.actionListener = this
         
-        // PERBAIKAN: Pastikan view bisa menerima fokus dan sentuhan
-        binding.zeroLatencyKeyboard.apply {
-            isClickable = true
-            isFocusable = true
-            isFocusableInTouchMode = true
-            requestFocus()
-        }
+        // PERBAIKAN: Hanya izinkan clickable, JANGAN pakai focusable atau requestFocus()
+        // agar kolom input di aplikasi Catatan tetap bisa diklik dan diketik.
+        binding.zeroLatencyKeyboard.isClickable = true
 
         applyErgonomicDimensions()
         setupTopBarControls()
@@ -52,15 +48,13 @@ class PlaInputMethodService : InputMethodService(), ZeroLatencyKeyboardView.Keyb
             // Refresh dimensi setiap kali keyboard muncul untuk memastikan sinkronisasi
             applyErgonomicDimensions()
             binding.zeroLatencyKeyboard.refreshLayout()
-            binding.zeroLatencyKeyboard.requestFocus()
         }
     }
 
     private fun applyErgonomicDimensions() {
         val density = resources.displayMetrics.density
         
-        // PERBAIKAN: Gunakan minHeight dari XML sebagai baseline, 
-        // lalu sesuaikan hanya jika preferensi memiliki nilai valid
+        // Sesuaikan tinggi keyboard hanya jika preferensi memiliki nilai valid
         val targetHeightDp = prefs.keyboardHeightDp
         if (targetHeightDp > 0) {
             val kbParams = binding.zeroLatencyKeyboard.layoutParams
